@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import Table from './components/Table/';
+import Filters from './components/Filters/';
 import transaction from './transactions.js'
 
 
@@ -14,6 +15,7 @@ class App extends Component {
         return (
             <div>
                 <Table data={this.state.transact}></Table>
+                <Filters ctx={this}></Filters>
             </div>
        )
     }
