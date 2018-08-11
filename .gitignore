@@ -4,8 +4,7 @@
 /node_modules
 
 # testing
-/src/components
-/components
+/src/components/Filters
 # production
 /public
 

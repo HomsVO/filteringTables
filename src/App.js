@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import Table from './components/Table/';
 import transaction from './transactions.js'
 
 
@@ -12,6 +13,7 @@ class App extends Component {
     render(){
         return (
             <div>
+                <Table data={this.state.transact}></Table>
             </div>
        )
     }
