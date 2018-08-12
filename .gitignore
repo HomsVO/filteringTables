@@ -5,7 +5,6 @@
 
 # testing
 # production
-/public
 /build
 
 # misc
