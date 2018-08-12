@@ -5,17 +5,31 @@ import transaction from './transactions.js'
 
 
 class App extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            transact:transaction
+    state = {
+        transact:[transaction],
+        activeFilters:[],
+    }
+    filtersToggler = (name,e) =>{
+        if(this.state.activeFilters.includes(name)){
+            let arr = this.state.activeFilters;
+            arr.splice(arr.indexOf(name),1);
+            e.target.className = '';
+            this.setState({
+                activeFilters:arr
+            })  
+        }else{
+            e.target.className = 'active';
+            this.setState({
+                activeFilters:this.state.activeFilters.concat(name)
+            })    
         }
     }
     render(){
         return (
             <div>
-                <Table data={this.state.transact}></Table>
-                <Filters ctx={this}></Filters>
+                <Table data={this.state.transact} activeFilters={this.state.activeFilters}></Table>
+                <Filters filtersToggler={this.filtersToggler}></Filters>
+                <h1>{this.state.activeFilters}</h1>
             </div>
        )
     }

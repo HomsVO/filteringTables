@@ -1,13 +1,12 @@
 import React from 'react'
 import filters from './filters.js'
-
 const Filters = (props) =>{
     return(
         <div>
-            <button onClick={filters.incomeFilter.incomeFilter.bind(props.ctx)}>{filters.incomeFilter.caption}</button>
-            <button onClick={filters.expenseFilter.expenseFilter.bind(props.ctx)}>{filters.expenseFilter.caption}</button>
-            <button onClick={filters.lastMonthFilter.lastMonthFilter.bind(props.ctx)}>{filters.lastMonthFilter.caption}</button>
-            <button onClick={filters.moreThousandFilter.moreThousandFilter.bind(props.ctx)}>{filters.moreThousandFilter.caption}</button>
+            <button onClick={props.filtersToggler.bind(this,filters.incomeFilter.name)}>Доход</button>
+            <button onClick={props.filtersToggler.bind(this,filters.expenseFilter.name)}>Расход</button>
+            <button onClick={props.filtersToggler.bind(this,filters.lastMonthFilter.name)}>За последний месяц</button>
+            <button onClick={props.filtersToggler.bind(this,filters.moreThousandFilter.name)}>Больше 1000</button>
         </div>
     )
 }

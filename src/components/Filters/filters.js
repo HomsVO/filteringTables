@@ -1,39 +1,28 @@
-import transaction from "../../transactions";
-
 const filters = {
     incomeFilter:{
-        incomeFilter:function(){
-            this.setState({
-                transact:transaction.filter(t=>t.type === 'доход'),
-            })
+        callback:function(t){
+           return t.type === "доход"
         },
-        caption:'Доход'
+        name:'incomeFilter'
     },
     expenseFilter:{
-        expenseFilter:function(){
-            this.setState({
-                transact:transaction.filter(t=>t.type === 'расход'),
-            })
-        },
-        caption:'Расход'
+        callback:function(t){
+            return t.type === "расход"
+         },
+        name:'expenseFilter'
     },
     lastMonthFilter:{
-        lastMonthFilter:function(){
-            const lastMonth = new Date();
-            lastMonth.setMonth(lastMonth.getMonth()-1)
-            this.setState({
-                transact:transaction.filter(t=> Date.parse(t.date) > lastMonth),
-            })
-        },
-        caption:'За последний месяц'
+        callback:function(t){
+            let d = new Date();
+            return Date.parse(t.date) > d.setMonth(d.getMonth() -1);
+         },
+        name:'lastMonthFilter'
     },
     moreThousandFilter:{
-        moreThousandFilter:function(){
-            this.setState({
-                transact:transaction.filter(t=> t.value > 1000),
-            })
-        },
-        caption:'Больше тысячи'
+        callback:function(t){
+            return t.value > 1000;
+         },
+        name:'moreThousandFilter'
     }
 }
 export default filters;
