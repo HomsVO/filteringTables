@@ -5,20 +5,20 @@ import transaction from './transactions.js'
 
 
 class App extends Component {
-    state = {
+   state = {
         transact:[transaction],
         activeFilters:[],
     }
-    filtersToggler = (name,e) =>{
+    filtersToggler = (e,name) =>{
         if(this.state.activeFilters.includes(name)){
             let arr = this.state.activeFilters;
             arr.splice(arr.indexOf(name),1);
-            e.target.className = '';
+            e.target.className = 'btn filter';
             this.setState({
                 activeFilters:arr
             })  
         }else{
-            e.target.className = 'active';
+            e.target.className = 'btn filter filter-active';
             this.setState({
                 activeFilters:this.state.activeFilters.concat(name)
             })    
@@ -29,7 +29,6 @@ class App extends Component {
             <div>
                 <Table data={this.state.transact} activeFilters={this.state.activeFilters}></Table>
                 <Filters filtersToggler={this.filtersToggler}></Filters>
-                <h1>{this.state.activeFilters}</h1>
             </div>
        )
     }

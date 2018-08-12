@@ -1,0 +1,32 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.wrapper{
+    width: 666px;
+    text-align: center;
+    margin: 0 auto;
+}
+.filter-active{
+    background-color: #000;
+}
+table{
+   width:400px;
+   margin: 25px auto;
+}
+.table-wrapper{
+    min-height: 400px;
+}
+.btn-wrapper{
+    margin: 0 auto;
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.btn{
+    border: none;
+    margin: 5px;
+    width: 150px;
+    height: 50px;
+    background-color: #CCFF99;
+}
