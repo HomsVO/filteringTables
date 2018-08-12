@@ -26,7 +26,7 @@ class App extends Component {
     }
     render(){
         return (
-            <div>
+            <div className='app-wrapper'>
                 <Table data={this.state.transact} activeFilters={this.state.activeFilters}></Table>
                 <Filters filtersToggler={this.filtersToggler}></Filters>
             </div>

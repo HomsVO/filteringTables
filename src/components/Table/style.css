@@ -1,0 +1,11 @@
+table{
+    width:400px;
+    margin: 0 auto;
+ }
+.table-wrapper{
+    min-height: 400px;
+}
+td{
+    background-color: #99FF66;
+    padding: 5px;
+}

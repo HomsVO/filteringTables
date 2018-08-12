@@ -1,3 +1,6 @@
+@import'./components/Filters/style.css';
+@import'./components/Table/style.css';
+
 *{
     padding: 0;
     margin: 0;
@@ -7,26 +10,7 @@
     text-align: center;
     margin: 0 auto;
 }
-.filter-active{
-    background-color: rgb(138, 243, 32)!important;
-}
-table{
-   width:400px;
-   margin: 25px auto;
-}
-.table-wrapper{
-    min-height: 400px;
-}
-.btn-wrapper{
-    margin: 0 auto;
-    width: 400px;
+.app-wrapper{
     display: flex;
-    flex-wrap: wrap;
-}
-.btn{
-    border: none;
-    margin: 5px;
-    width: 150px;
-    height: 50px;
-    background-color: #CCFF99;
+    margin-top:10px;
 }
