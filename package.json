@@ -9,12 +9,15 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently --kill-others \"npm run jserver\" \"npm run react-start\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "react-start":"react-scripts start",
+    "jserver": "json-server -w transactions.json --port 8000"
   },
   "devDependencies": {
+    "concurrently": "^4.1.0",
     "eslint": "^5.3.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-config-standard-react": "^6.0.0",
