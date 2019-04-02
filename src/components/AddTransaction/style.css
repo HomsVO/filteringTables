@@ -1,0 +1,16 @@
+input,select{
+    background-color: #242424;
+    color: #fff;
+    padding: 5px;
+    box-shadow: none;
+    border: none;
+    outline: none;
+    font-family: Arial;
+    font-size: 18px;
+    margin: 5px;
+    width: 200px;
+}
+label{
+    font-family: Arial;
+    font-size: 18px;
+}

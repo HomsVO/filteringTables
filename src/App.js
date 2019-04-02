@@ -1,12 +1,13 @@
 import React,{Component} from 'react';
 import Table from './components/Table/';
 import Filters from './components/Filters/';
-import transaction from './transactions.js'
-
+import AddTransaction from './components/AddTransaction/';
+import axios from 'axios';
+import { Route,Link } from 'react-router-dom';
 
 class App extends Component {
    state = {
-        transact:[transaction],
+        transact:[],
         activeFilters:[],
     }
     filtersToggler = (e,name) =>{
@@ -24,13 +25,35 @@ class App extends Component {
             })    
         }
     }
+
     render(){
         return (
             <div className='app-wrapper'>
-                <Table data={this.state.transact} activeFilters={this.state.activeFilters}></Table>
-                <Filters filtersToggler={this.filtersToggler}></Filters>
+                <Route exact path="/" render={(props)=>(
+                    <div className='home'>
+                        <Table data={this.state.transact} activeFilters={this.state.activeFilters}></Table>
+                        <Filters filtersToggler={this.filtersToggler}></Filters>
+                        <div className='add btn'>
+                            <Link to='/add/'>Добавить новую транзакцию</Link>
+                        </div>
+ 
+                    </div>
+                )}></Route>
+                <Route exact path="/add" render={(props)=>(
+                    <div className='home'>
+                         <AddTransaction data={this.state.transact}></AddTransaction>
+                    </div>
+                )}></Route>                
             </div>
-       )
+        )
     }
+    componentDidMount() {
+    axios.get(`http://localhost:8000/transactions`)
+        .then(res => {
+        const transactions = res.data;
+        this.setState({ transact:transactions });
+        })
+    }
+
 }
 export default App;

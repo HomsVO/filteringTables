@@ -3,9 +3,12 @@ table{
     margin: 0 auto;
  }
 .table-wrapper{
-    min-height: 400px;
+    min-height: 420px;
 }
 td{
-    background-color: #99FF66;
+    background-color: #fff;
     padding: 5px;
+    color: #242424;
+    font-weight: bold;
+    font-family: Arial;
 }

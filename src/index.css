@@ -11,6 +11,20 @@
     margin: 0 auto;
 }
 .app-wrapper{
-    display: flex;
     margin-top:10px;
+}
+.home{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.add{
+    width: 50%;
+    line-height: 47px;
+
+}
+.add a{
+    color: #fff;
+    text-decoration: none;
+    font-family: Arial;
 }
