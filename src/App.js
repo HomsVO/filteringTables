@@ -1,12 +1,14 @@
 import React,{Component} from 'react';
 import Table from './components/Table/';
 import Filters from './components/Filters/';
+import filters from './components/Filters/filters.js';
 import AddTransaction from './components/AddTransaction/';
 import axios from 'axios';
 import { Route,Link } from 'react-router-dom';
 
 class App extends Component {
    state = {
+        allTransactions:[],
         transact:[],
         activeFilters:[],
     }
@@ -17,29 +19,52 @@ class App extends Component {
             e.target.className = 'btn filter';
             this.setState({
                 activeFilters:arr
-            })  
+            },this.filterTransactions)  
         }else{
             e.target.className = 'btn filter filter-active';
             this.setState({
                 activeFilters:this.state.activeFilters.concat(name)
-            })    
+            },this.filterTransactions)    
         }
     }
-
+    getTransactions = () => {
+        axios.get(`http://localhost:8000/transactions`)
+        .then(res => {
+        const transactions = res.data;
+        this.setState({ 
+            allTransactions:transactions,
+            transact:transactions 
+        });
+        })
+    }
+    filterTransactions = () =>{
+        if(this.state.activeFilters.length > 0){
+            let data = this.state.allTransactions;
+            this.state.activeFilters.forEach(f =>{
+                data = data.filter(filters[f]['callback']);
+            })
+            this.setState({
+                transact:data
+            })
+        }else{
+            this.setState({
+                transact:this.state.allTransactions
+            })
+        }
+    }
     render(){
         return (
             <div className='app-wrapper'>
-                <Route exact path="/" render={(props)=>(
+                <Route exact path="/" render={()=>(
                     <div className='home'>
-                        <Table data={this.state.transact} activeFilters={this.state.activeFilters}></Table>
+                        <Table data={this.state.transact}></Table>
                         <Filters filtersToggler={this.filtersToggler}></Filters>
                         <div className='add btn'>
                             <Link to='/add/'>Добавить новую транзакцию</Link>
                         </div>
- 
                     </div>
                 )}></Route>
-                <Route exact path="/add" render={(props)=>(
+                <Route exact path="/add" render={()=>(
                     <div className='home'>
                          <AddTransaction data={this.state.transact}></AddTransaction>
                     </div>
@@ -48,11 +73,7 @@ class App extends Component {
         )
     }
     componentDidMount() {
-    axios.get(`http://localhost:8000/transactions`)
-        .then(res => {
-        const transactions = res.data;
-        this.setState({ transact:transactions });
-        })
+        this.getTransactions();
     }
 
 }
